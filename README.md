@@ -1,6 +1,4 @@
-# Project Title
-
-Machine Learning for Social Assistive Robots
+# Machine Learning for Social Assistive Robots
 
 ## Description
 

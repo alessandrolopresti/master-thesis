@@ -18,6 +18,12 @@ The project is structured in two modules:
   <img width="690" height="315" src="https://i.ibb.co/3khCZj7/Cattura.jpg">
 </p>
 
+### Components
+
+Environment Simulator - [gym_foo](master-thesis/gym_foo)
+
+
+
 
 
 

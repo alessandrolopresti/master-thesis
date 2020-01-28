@@ -14,5 +14,8 @@ The project is structured in two modules:
 - Supervised Learning (extracting features from sensors)
 - Reinforcement Learning (making decisions)
 
+![alt text](https://ibb.co/zNf4vBr)
+
+
 
 

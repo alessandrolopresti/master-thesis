@@ -20,7 +20,9 @@ The project is structured in two modules:
 
 ## Components
 
-Environment Simulator - [gym_foo](gym_foo)
+- Environment Simulator based on OpenAI Gym - [gym_foo](gym_foo)
+- Supervised Learning module: [AudioRecorder.py](thesis/AudioRecorder.py) and [VideoRecorder.py](thesis/VideoRecorder.py) respectively record audio and video clips classified using the pre-trained CNNs [FER - Facial Expression Recognition](https://github.com/mayurmadnani/fer) and [Emotion-Classification-Ravdess](https://github.com/marcogdepinto/Emotion-Classification-Ravdess).
+  
 
 
 

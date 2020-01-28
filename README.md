@@ -14,7 +14,9 @@ The project is structured in two modules:
 - Supervised Learning (extracting features from sensors)
 - Reinforcement Learning (making decisions)
 
-![alt text](https://i.ibb.co/3khCZj7/Cattura.jpg)
+<p align="center">
+  <img width="460" height="300" src="https://i.ibb.co/3khCZj7/Cattura.jpg">
+</p>
 
 
 

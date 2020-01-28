@@ -77,26 +77,6 @@ class FooEnv(gym.Env):
         return temp
 
 
-
-    """"# It returns whether a sample is an exception or not
-    def isException(self):
-        if (self.state == (0, 0, 1, 0) or self.state == (0, 1, 1, 0) or self.state == (1, 0, 1, 0)
-                or self.state == (1, 1, 1, 0) or self.state == (0, 2, 1, 0) or self.state == (2, 0, 1, 0)
-                or self.state == (2, 2, 1, 0)):
-            return True
-        return False
-
-    # It returns the values of the state variables corresponding to the indexes you specified in the array variables
-    def takeValuesOfStateVariables(self, variables):
-        array = []
-        result = []
-        for elem in self.state:
-            array.append(elem)
-        for i in range(len(variables)):
-            result.append(array[variables[i]])
-        return result
-    """
-
     def step(self, action):
         if (np.random.random() <= 0.9):
             if (action == 0):
@@ -195,9 +175,6 @@ class FooEnv(gym.Env):
         else:
             self.state = self.concatenateLists()[random.randrange(0, len(self.visitableStates), 1)]
 
-
-
-
         reward = 0
 
         if (self.belongsTo('HH0') or self.belongsTo('HH1') or self.belongsTo('HH2')):
@@ -211,144 +188,6 @@ class FooEnv(gym.Env):
 
         return self.state, reward, self.done, "DEBUG"
 
-    # This function is called to avoid that in a bad situation you have both emotionalFace and emotionalAudio equal to 'Neutral'
-    """"" 
-    def changeBadSituation(self, emotionalFace, emotionalAudio):
-        if (np.random.random() <= 0.5):
-            emotionalFace = 2
-        else:
-            emotionalAudio = 2
-        return emotionalFace, emotionalAudio
-
-    # This function is used to generate a situation that can be good or bad depending on the value of the flag parameter
-    def generateSituation(self, situation, flag): # if flag == 1 then goodSituation else badSituation
-        emotionalFace = situation['EmotionalFace'][0] if np.random.random() <= 0.2 else situation['EmotionalFace'][1]
-        if(flag):
-            fallingObject = situation['FallingObject'][0]
-        else:
-            fallingObject = situation['FallingObject'][0] if np.random.random() <= 0.2 else situation['FallingObject'][1]
-        emotionalAudio = situation['EmotionalAudio'][0] if np.random.random() <= 0.1 else situation['EmotionalAudio'][1]
-        usedObject = situation['UsedObject'][0] if np.random.random() <= 0.3 else situation['UsedObject'][1]
-
-        # The last state variable has to follow a criterion:
-        # completedTherapy can assume the value True when X good states are visited
-
-        if (self.countGoodStates == self.thresholdEndEpisode):
-            completedTherapy = 1
-        else:
-            completedTherapy = 0
-        if (flag == 0 and emotionalFace == 0 and emotionalFace == emotionalAudio):
-            emotionalFace, emotionalAudio = self.changeBadSituation(emotionalFace, emotionalAudio)
-        return (emotionalFace, fallingObject, emotionalAudio, usedObject, completedTherapy)
-
-    # This function returns if a situation is good or bad
-    def kindOfSituation(self, situation):
-        array = []
-        for elem in situation:
-            array.append(elem)
-        for i in range(len(array)):
-            if (array[0] == 1 or array[2] == 1): # array[0] == 1 means EmotionalFace is 'Happy', array[2] == 1 means EmotionalAudio is 'Happy'
-                return 1 # return a good situation
-            elif (array[0] == 0 and array[2] == 0): # array[0] == 0 means EmotionalFace is 'Neutral', array[2] == 1 means EmotionalAudio is 'Neutral'
-                return 1
-            else:
-                return 0 # return a bad situation
-
-
-
-    def howGood(self):
-        print("Sono in HowGood")
-        emotions = self.takeValuesOfStateVariables([0, 1, 2])
-        if (emotions[0] == 0 and emotions[2] == 0): return 0
-        if ((emotions[0] == 0 and emotions[2] == 1) or (emotions[0] == 1 and emotions[2] == 0)):    return 1
-        if (emotions[0] == 1 and emotions[2] == 1): return 2
-
-    def howBad(self):
-        print("Sono in HowBad")
-        emotions = self.takeValuesOfStateVariables([0, 1, 2])
-        if ((emotions[0] == 0 and emotions[2] == 2) or (emotions[0] == 2 and emotions[2] == 0)): return -1
-        if (emotions[0] == 2 and emotions[1] == 0 and emotions[2] == 2): return -2
-        if (emotions[0] == 2 and emotions[1] == 1 and emotions[2] == 2): return -3
-
-    def upState(self, level):
-        if (level == -3): self.state = (2, 0, 2, 0, 0)
-        if (level == -2): self.state = (0, 0, 2, 0, 0)
-        if (level == -1): self.state = (0, 0, 0, 0, 0)
-        if (level == 0): self.state = (1, 0, 0, 0, 0)
-        if (level == 1): self.state = (1, 0, 1, 0, 0)
-        if (level == 2): self.state = (1, 0, 1, 0, 0)
-        return self.state
-
-    def downState(self, level):
-        if (level == 2): self.state = (1, 0, 0, 0, 0)
-        if (level == 1): self.state = (0, 0, 0, 0, 0)
-        if (level == 0): self.state = (0, 0, 2, 0, 0)
-        if (level == -1): self.state = (2, 0, 2, 0, 0)
-        if (level == -2): self.state = (2, 1, 2, 0, 0)
-        if (level == -3): self.state = (2, 1, 2, 0, 0)
-        return self.state
-
-
-    def step(self, action):
-        if (action == 0):
-            if (self.takeValuesOfStateVariables([0, 2]) == [0, 0]):
-                if (np.random.random() <= 0.5):
-
-
-
-
-
-      # ACTION WAIT
-        if action == 0:
-            if (self.kindOfSituation(self.state)): # If I am in a good situation
-                levelOfGoodness = self.howGood()
-                if (np.random.random() <= 0.9): # with probability 90% the next state will be good
-                    self.state = self.upState(levelOfGoodness)
-                    if (self.howGood() == 2):
-                        self.countGoodStates += 1
-                else:
-                    self.state = self.generateSituation(self.badSituation, 0)
-            else:
-                levelOfBadness = self.howBad()
-                print(levelOfBadness)
-                if (not levelOfBadness == -3):
-                    if (np.random.random() <= 0.9):
-                        self.state = self.downState(levelOfBadness)
-                    else:
-                        self.state = self.generateSituation(self.goodSituation, 1)
-                        if (self.howGood() == 2):
-                            self.countGoodStates += 1
-
-        # ACTION HEY, DON'T WORRY.
-        if action == 1:
-            if (not self.kindOfSituation(self.state)): # If you are in bad situation
-                levelOfBadness = self.howBad()
-                self.state = self.upState(levelOfBadness)
-            else: # Otherwise If you are in a good situation
-                array = self.takeValuesOfStateVariables([0, 2])
-                levelOfGoodness = self.howGood()
-                if (array == [1, 1]):
-                    self.state = self.downState(levelOfGoodness)
-
-        # ACTION SOMETHING HAS FALLEN, I WILL TELL YOU A JOKE
-        if (action == 2):
-            if(self.kindOfSituation(self.state)): # if I am in a good state
-                levelOfGoodness = self.howGood()
-                self.state = self.downState(levelOfGoodness)
-            else:
-                levelOfBadness = self.howBad()
-                if (self.takeValuesOfStateVariables([1]) == 1):
-                    self.state = self.upState(levelOfBadness)
-                else:
-                    self.state = self.downState(levelOfBadness)
-
-        self.reward -= 1
-        valueCompletedTherapy = self.takeValuesOfStateVariables([4])
-        if (valueCompletedTherapy[0] == 1):
-            self.done = True
-
-        return self.state, self.reward, self.done, "DEBUG" 
-    """
 
     def reset(self):
         self.state = self.pickSampleByRegion('NN')

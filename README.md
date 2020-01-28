@@ -15,7 +15,7 @@ The project is structured in two modules:
 - Reinforcement Learning (making decisions)
 
 <p align="center">
-  <img width="460" height="300" src="https://i.ibb.co/3khCZj7/Cattura.jpg">
+  <img width="460" height="210" src="https://i.ibb.co/3khCZj7/Cattura.jpg">
 </p>
 
 

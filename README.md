@@ -34,8 +34,14 @@ The project is structured in two modules:
 - librosa == 0.7.1
 
 ## Installation
-
-
+You can run this application just installing the custom environment:
+```
+$ pip install -e .
+```
+and running the [main.py](thesis/main.py):
+'''
+$ python main.py
+'''
 
 
 

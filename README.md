@@ -23,7 +23,7 @@ The project is structured in two modules:
 - Reinforcement Learning module: [decisionTreeAllVariables.py](decisionTreeAllVariables.py) and [decisionTreeThreeVariables.py](decisionTreeThreeVariables.py) implement the learning agent considering respectively all features (Face Expression Recognition, Speech Emotion Recognition, Object State, Environmental Sound) characterizing the state and the three most important.
 
 ## Requirements
-- tensorflow == 1.15.0
+- tensorflow == 1.15.2
 - keras == 2.2.5
 - cv2 == 4.1.2
 - pyaudio == 0.2.11
